@@ -21,6 +21,9 @@ app.post("/echo", (req, res) => {
   });
 });
 
+const authRouter = require("./routers/auth");
+app.use("/", authRouter);
+
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
