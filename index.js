@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 
-const PORT = process.env.PORT || 4050;
-
 const loggerMiddleWare = require("morgan");
 app.use(loggerMiddleWare("dev"));
 
@@ -23,6 +21,8 @@ app.post("/echo", (req, res) => {
 
 const authRouter = require("./routers/auth");
 app.use("/", authRouter);
+
+const { PORT } = require("./config/constants");
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
