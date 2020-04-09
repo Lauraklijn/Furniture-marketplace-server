@@ -56,6 +56,16 @@ Mood-board:
 -	As a user I want to be able to upload my own pictures into my mood-board (drop and drag)
 -	As a user I want to be able to comment on a mood-board
 
+## Technology used
+
+- React
+- Redux
+- Express
+- REST API
+- Sequelize
+- React-Bootstrap
+- NodeJS
+
 ## Wireframe
 
 ![Wireframe](https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/C1617280e6a2e44c6bb041347ca13a543/projects/M29f204c619d74c9f759c926d971e93531583164575624/pages/d086442dea3b41bead1789f87ec8df5a/image/d086442dea3b41bead1789f87ec8df5a.png)
