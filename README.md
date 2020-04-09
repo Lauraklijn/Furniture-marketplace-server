@@ -1,4 +1,10 @@
-# Furniture-(moodboard)-marketplace-client
+# Furniture-(moodboard)-marketplace-server
+
+## DEMO - (In progress - latest update)
+
+![Demo](https://github.com/Lauraklijn/Furniture_marketplace-client/blob/master/src/Schermafbeelding%202020-04-09%20om%2015.55.53.png)
+
+![Demo](https://github.com/Lauraklijn/Furniture_marketplace-client/blob/master/src/Schermafbeelding%202020-04-09%20om%2015.58.14.png)
 
 # Market place/mood-board for second hand furniture
 With a style check before showing on webpage to sell.  Being able to sell, search, bid, comment, inspire and connect.
