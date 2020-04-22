@@ -8,12 +8,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       description: DataTypes.TEXT,
+      imageUrl: DataTypes.STRING,
     },
     {}
   );
   homepage.associate = function (models) {
     homepage.belongsTo(models.user);
-    // homepage.hasMany(models.story);
+
     homepage.hasMany(models.product);
   };
   return homepage;

@@ -15,6 +15,9 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
+      imageUrl: {
+        type: Sequelize.STRING,
+      },
 
       createdAt: {
         allowNull: false,

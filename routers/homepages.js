@@ -14,9 +14,9 @@ router.patch("/:id", auth, async (req, res) => {
       .send({ message: "You are not authorized to update this homepage" });
   }
 
-  const { title, description } = req.body;
+  const { title, description, imageUrl } = req.body;
 
-  await homepage.update({ title, description });
+  await homepage.update({ title, description, imageUrl });
 
   return res.status(200).send({ homepage });
 });
@@ -40,7 +40,7 @@ router.post("/:id/products", auth, async (req, res) => {
   const { description, imageUrl, price, productInfo, city } = req.body;
 
   if (!description) {
-    return res.status(400).send({ message: "A story must have a name" });
+    return res.status(400).send({ message: "A product need a description" });
   }
 
   const product = await Product.create({
@@ -52,7 +52,7 @@ router.post("/:id/products", auth, async (req, res) => {
     homepageId: homepage.id,
   });
 
-  return res.status(201).send({ message: "Story created", product });
+  return res.status(201).send({ message: "Product created", product });
 });
 
 // // ------------ test 2 Get products
