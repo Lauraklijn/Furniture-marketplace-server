@@ -55,7 +55,6 @@ router.post("/:id/products", auth, async (req, res) => {
   return res.status(201).send({ message: "Product created", product });
 });
 
-// // ------------ test 2 Get products
 router.get("/:id/products/:id", (req, res, next) => {
   console.log("TEST ID endpoint", req.params.id);
   Product.findByPk(req.params.id)
