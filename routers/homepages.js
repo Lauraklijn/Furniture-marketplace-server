@@ -14,9 +14,9 @@ router.patch("/:id", auth, async (req, res) => {
       .send({ message: "You are not authorized to update this homepage" });
   }
 
-  const { title, description, backgroundColor, color } = req.body;
+  const { title, description } = req.body;
 
-  await homepage.update({ title, description, backgroundColor, color });
+  await homepage.update({ title, description });
 
   return res.status(200).send({ homepage });
 });
@@ -49,21 +49,21 @@ router.post("/:id/products", auth, async (req, res) => {
     price,
     productInfo,
     city,
-    homepageId: homepage.id
+    homepageId: homepage.id,
   });
 
   return res.status(201).send({ message: "Story created", product });
 });
 
 // // ------------ test 2 Get products
-// router.get("/:id/products/:id", (req, res, next) => {
-//   console.log("TEST ID endpoint", req.params.id);
-//   Product.findByPk(req.params.id)
-//     .then(product => {
-//       res.send(product);
-//     })
-//     .catch(next);
-// });
+router.get("/:id/products/:id", (req, res, next) => {
+  console.log("TEST ID endpoint", req.params.id);
+  Product.findByPk(req.params.id)
+    .then((product) => {
+      res.send(product);
+    })
+    .catch(next);
+});
 
 router.get("/", async (req, res) => {
   const limit = req.query.limit || 10;
@@ -72,7 +72,7 @@ router.get("/", async (req, res) => {
     limit,
     offset,
     include: [Product],
-    order: [[Product, "createdAt", "DESC"]]
+    order: [[Product, "createdAt", "DESC"]],
   });
   res.status(200).send({ message: "ok", homepages });
 });
@@ -87,7 +87,7 @@ router.get("/:id", async (req, res) => {
 
   const homepage = await Homepage.findByPk(id, {
     include: [Product],
-    order: [[Product, "createdAt", "DESC"]]
+    order: [[Product, "createdAt", "DESC"]],
   });
 
   if (homepage === null) {
@@ -96,27 +96,5 @@ router.get("/:id", async (req, res) => {
 
   res.status(200).send({ message: "ok", homepage });
 });
-
-// Probeer product -- check
-
-// router.get("/:id/products/:id", async (req, res) => {
-//   const { id } = req.params;
-
-//   console.log(id);
-//   if (isNaN(parseInt(id))) {
-//     return res.status(400).send({ message: "Homepage id is not a number" });
-//   }
-
-//   const product = await Product.findByPk(id, {
-//     include: [Product],
-//     order: [[Product, "createdAt", "DESC"]]
-//   });
-
-//   if (product === null) {
-//     return res.status(404).send({ message: "Homepage not found" });
-//   }
-
-//   res.status(200).send({ message: "ok", product });
-// });
 
 module.exports = router;

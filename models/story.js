@@ -5,14 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       imageUrl: DataTypes.STRING,
-      content: DataTypes.TEXT
+      content: DataTypes.TEXT,
     },
     {}
   );
-  story.associate = function(models) {
+  story.associate = function (models) {
     story.belongsTo(models.homepage);
   };
   return story;
