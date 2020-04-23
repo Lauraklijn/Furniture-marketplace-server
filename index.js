@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
 app.post("/echo", (req, res) => {
   res.json({
     youPosted: {
-      ...req.body
-    }
+      ...req.body,
+    },
   });
 });
 
@@ -32,11 +32,11 @@ app.post("/authorized_post_request", authMiddleWare, (req, res) => {
 
   res.json({
     youPosted: {
-      ...req.body
+      ...req.body,
     },
     userFoundWithToken: {
-      ...user.dataValues
-    }
+      ...user.dataValues,
+    },
   });
 });
 
@@ -45,6 +45,9 @@ app.use("/", authRouter);
 
 const homePagesRouter = require("./routers/homepages");
 app.use("/homepages", homePagesRouter);
+
+const emialRouter = require("./routers/email");
+app.use(emialRouter);
 
 const { PORT } = require("./config/constant");
 
