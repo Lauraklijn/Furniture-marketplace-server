@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const nodemailer = require("nodemailer");
 const auth = require("../auth/middleware");
+require("dotenv").config();
 
 const router = new Router();
 
@@ -12,13 +13,13 @@ router.post("/sendMail", auth, async (request, response, next) => {
       service: "gmail",
       auth: {
         // in order for this to work, the user MUST allow "Less secure app" AND disable two-step verification on Google Account
-        user: "", // gmail
-        pass: "", // password
+        user: process.env.EMAIL, // gmail
+        pass: process.env.PASSWORD, // password
       },
     });
 
     let mailOptions = {
-      from: "", // user gmail
+      from: "marketplace.furniture.app@gmail.com", // user gmail
       to: `${ownerEmail}`, // destination
       subject: `Hi ${name} is interested in your product`,
       text: `${message}`,

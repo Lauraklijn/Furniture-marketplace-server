@@ -24,13 +24,13 @@ router.post("/login", async (req, res, next) => {
       include: {
         model: Homepage,
         include: [Product],
-        order: [[Product, "createdAt", "DESC"]]
-      }
+        order: [[Product, "createdAt", "DESC"]],
+      },
     });
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(400).send({
-        message: "User with that email not found or password incorrect"
+        message: "User with that email not found or password incorrect",
       });
     }
 
@@ -53,15 +53,15 @@ router.post("/signup", async (req, res) => {
       email,
       password: bcrypt.hashSync(password, SALT_ROUNDS),
       name,
-      imageUrl
+      imageUrl,
     });
 
     delete newUser.dataValues["password"]; // don't send back the password hash
     const token = toJWT({ userId: newUser.id });
 
     const homepage = await Homepage.create({
-      title: `${newUser.name}'s furniture store`,
-      userId: newUser.id
+      title: `${newUser.name}`,
+      userId: newUser.id,
     });
 
     res.status(201).json({
@@ -70,8 +70,8 @@ router.post("/signup", async (req, res) => {
       homepage: {
         ...homepage.dataValues,
 
-        products: []
-      }
+        products: [],
+      },
     });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
@@ -90,7 +90,7 @@ router.get("/me", authMiddleware, async (req, res) => {
   const homepage = await Homepage.findOne({
     where: { userId: req.user.id },
     include: [Product],
-    order: [[Product, "createdAt", "DESC"]]
+    order: [[Product, "createdAt", "DESC"]],
   });
 
   delete req.user.dataValues["password"];

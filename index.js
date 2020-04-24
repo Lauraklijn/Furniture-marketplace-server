@@ -46,8 +46,8 @@ app.use("/", authRouter);
 const homePagesRouter = require("./routers/homepages");
 app.use("/homepages", homePagesRouter);
 
-const emialRouter = require("./routers/email");
-app.use(emialRouter);
+const emailRouter = require("./routers/email");
+app.use(emailRouter);
 
 const { PORT } = require("./config/constant");
 
